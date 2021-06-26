@@ -1,2 +1,5 @@
 .idea
 *.pdf
+*.key
+*.json
+*.zip
