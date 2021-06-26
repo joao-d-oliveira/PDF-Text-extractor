@@ -55,7 +55,6 @@ def get_txt_allpages(pdf):
 
 
 if __name__ == '__main__':
-
     # creating a pdf reader object
     fileReader = PdfFileReader(open('pdfs/vacinacao_covid_COMPLETO_CE_29_03_2021.pdf', 'rb'))
 
