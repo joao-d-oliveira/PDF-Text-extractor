@@ -48,7 +48,7 @@ def saveTextAPI(filemame):
         result: FileRef = extract_pdf_operation.execute(execution_context)
 
         # Save the result to the specified location.
-        output_filename = filemame.replace('output', 'outputTxt').replace('.pdf', '.zip')
+        output_filename = filemame.replace('output', 'outputCSV').replace('.pdf', '.zip')
         result.save_as(BASE_PATH + output_filename)
     except (ServiceApiException, ServiceUsageException, SdkException):
         logging.exception("Exception encountered while executing operation")
