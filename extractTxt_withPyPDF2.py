@@ -2,6 +2,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 
 COUNT_SKIPS = 1
 COUNT_COLS = 4
+PDF_FILENAME = 'pdfs/Pessoas Cadastradas 25-03-2021_vacineja_compac.pdf'
 
 
 def treat_text(txt):
@@ -20,7 +21,7 @@ def treat_text(txt):
 
 def split_files(reader, nsplit):
     n = fileReader.numPages
-    n = 11539 #overwrite page number given pdf is broken and empty after page 11539
+    #n = 11539 #overwrite page number given pdf is broken and empty after page 11539
     k = n // nsplit
     for i in range(0, n, k):
         writer = PdfFileWriter()
@@ -56,11 +57,11 @@ def get_txt_allpages(pdf):
 
 if __name__ == '__main__':
     # creating a pdf reader object
-    fileReader = PdfFileReader(open('pdfs/vacinacao_covid_COMPLETO_CE_29_03_2021.pdf', 'rb'))
+    fileReader = PdfFileReader(open(PDF_FILENAME, 'rb'))
 
-    fulltxt = get_txt_allpages(fileReader)
+    #fulltxt = get_txt_allpages(fileReader)
 
-    #splitFiles(fileReader, 100)
+    split_files(fileReader, 100)
 
     print('done analysing')
 
