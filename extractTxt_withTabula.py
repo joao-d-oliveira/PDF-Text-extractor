@@ -45,23 +45,24 @@ def process_file(filename, cols, outpname):
 
     for d, df in enumerate(dfs):
         tmprow = df.columns
-
-        df.columns = cols
+        df.columns = cols[:len(df.columns)]
         df = df.append({c: t for c, t in zip(df.columns, tmprow)}, ignore_index=True)
+        if len(cols) != len(df.columns):
+            k = 0
         mergedDF = pd.concat([mergedDF, df], axis=0)
         totalLines += len(df)
     print(f'\rProcessed file # ({filename:<25}) took {time.time() - start} seg', end='')
 
-    mergedDF.to_csv(BASEPATH + outpname, index=False)
+    mergedDF.to_csv(BASEPATH + outpname, index=False, encoding='utf_32')
     print('total lines', totalLines)
 
 
 if __name__ == '__main__':
     filepath = 'output/'
     outppath = 'outputCSV/'
-    filename = "pdfs/Pessoas Cadastradas 25-03-2021_vacineja_compac.pdf"
-    outpname = "outputCSV/Pessoas Cadastradas 25-03-2021_vacineja_compac.csv"
+    filename = "pdfs/Nomes Próprios.pdf"
+    outpname = "outputCSV/Nomes_Próprios.csv"
 
-    cols = ['Name', 'Nascido', 'Idade']
-    #process_file(filename, cols, outpname)
-    process_allfiles_folder(filepath, cols, outpname)
+    cols = ['Genero', 'Nome', 'empty', 'Genero2', 'Nome2']
+    process_file(filename, cols, outpname)
+    #process_allfiles_folder(filepath, cols, outpname)
